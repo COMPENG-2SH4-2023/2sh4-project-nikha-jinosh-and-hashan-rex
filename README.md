@@ -4,7 +4,15 @@ Project Preparation Activity 3
 
 You must watch the briefing video and read through the manual to engage in the development activities.
 
+Nikha Jinosh
+Section: [C01]
 
+MacID: [jinoshn]
+
+StudentID: [400298994]
+
+
+Hashan Rex
 Section: [Insert your lab section]
 
 MacID: [Insert your macID here]
