@@ -13,8 +13,8 @@ StudentID: [400298994]
 
 
 Hashan Rex
-Section: [Insert your lab section]
+Section: [C02]
 
-MacID: [Insert your macID here]
+MacID: [rexh]
 
-StudentID: [Insert your numerical student ID here]
+StudentID: [400379537]
