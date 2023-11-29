@@ -88,12 +88,12 @@ void Player::movePlayer()
             break;
         case DOWN:
             playerPos.y++;
-            if (playerPos.y >= mainGameMechsRef->getBoardSizeY()) // Wraparound logic
+            if (playerPos.y >= mainGameMechsRef->getBoardSizeY() - 1) // Wraparound logic
                 playerPos.y = 1;
             break;
         case RIGHT:
             playerPos.x++;
-            if (playerPos.x >= mainGameMechsRef->getBoardSizeX()) // Wraparound logic
+            if (playerPos.x >= mainGameMechsRef->getBoardSizeX() - 1) // Wraparound logic
                 playerPos.x = 1;
             break;
         case STOP:
