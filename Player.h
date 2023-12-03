@@ -19,9 +19,13 @@ class Player
         Player(GameMechs* thisGMRef);
         ~Player();
 
-        objPosArrayList* getPlayerPos(); // upgraded for snake body
+        void getPlayerPos(objPos &returnPos); // Upgrade this in iteration 3.
         void updatePlayerDir();
         void movePlayer();
+
+        bool checkFoodConsumption();
+        void increasePlayerLength();
+        bool checkSelfCollision();
 
     private:
         objPosArrayList *playerPosList;   // Upgrade this in iteration 3.       

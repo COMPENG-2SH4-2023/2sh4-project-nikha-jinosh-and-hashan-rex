@@ -3,7 +3,7 @@
 #include "objPos.h"
 #include "GameMechs.h"
 #include "Player.h"
-
+#include "objPosArrayList.h"
 
 using namespace std;
 
@@ -11,7 +11,6 @@ using namespace std;
 
 GameMechs* myGM;
 Player* myPlayer;
-
 
 void Initialize(void);
 void GetInput(void);
@@ -60,28 +59,41 @@ void RunLogic(void)
     myPlayer->updatePlayerDir();
     myPlayer->movePlayer();
 
-    // myGM->clearInput; // so to not repeatedly process the input?? Does this go in player.h instead
+    // myGM->clearInput; // so to not repeatedly process the input?? Does this go in player.h instead?
 }
 
 void DrawScreen(void)
 {
     MacUILib_clearScreen();
 
-    objPos tempPos;
-    myPlayer->getPlayerPos(tempPos); // Gets the player pos
+    bool drawn;
+
+    objPosArrayList* playerBody = myPlayer->getPlayerPos();
+    objPos tempBody;
 
     // Prints game board
     for (int i = 0; i < myGM->getBoardSizeY(); i++)
     {
         for (int j = 0; j < myGM->getBoardSizeX(); j++)
         {
+            drawn = false;
+            // Iterates through every element in the list
+            for (int k = 0; k < playerBody->getSize(); k++)
+            {
+                playerBody->getElement(tempBody, k);
+                if(tempBody.x == j && tempBody.y == i)
+                {
+                    MacUILib_printf("%c", tempBody.symbol);
+                    drawn = true;
+                    break;
+                }
+            }
+
+            if (drawn) continue; // If player bodty was drawn, don't draw anything below
+
             if (i == 0 || j == 0 || i == myGM->getBoardSizeY() - 1 || j ==  myGM->getBoardSizeX() - 1)
             {
                 MacUILib_printf("#");
-            }
-            else if(tempPos.x == j && tempPos.y == i)
-            {
-                MacUILib_printf("%c", tempPos.symbol);
             }
             else
             {
@@ -91,12 +103,13 @@ void DrawScreen(void)
         MacUILib_printf("\n");
     }
 
+    MacUILib_printf("Score: %d\n", myGM->getScore());
     // Debug Message
     MacUILib_printf("=== DEBUG MESSAGE ===\n");
-    MacUILib_printf("BoardSize: %dx%d\nPlayer Pos: (%d, %d) + %c\n", 
-                    myGM->getBoardSizeX(), 
-                    myGM->getBoardSizeY(),
-                    tempPos.x, tempPos.y, tempPos.symbol);
+    // MacUILib_printf("BoardSize: %dx%d\nPlayer Pos: (%d, %d) + %c\n", 
+    //                 myGM->getBoardSizeX(), 
+    //                 myGM->getBoardSizeY(),
+    //                 tempPos.x, tempPos.y, tempPos.symbol);
 }
 
 void LoopDelay(void)
