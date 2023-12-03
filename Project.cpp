@@ -47,6 +47,9 @@ void Initialize(void)
 
     myGM = new GameMechs(30, 15); // Makes board size 30x15
     myPlayer = new Player(myGM);
+
+    objPosArrayList* tempPos;
+    myGM->generateFood(tempPos);
 }
 
 void GetInput(void)
@@ -70,6 +73,9 @@ void DrawScreen(void)
 
     objPosArrayList* playerBody = myPlayer->getPlayerPos();
     objPos tempBody;
+
+    objPos tempFoodPos;
+    myGM->getFoodPos(tempFoodPos);
 
     // Prints game board
     for (int i = 0; i < myGM->getBoardSizeY(); i++)
@@ -95,6 +101,10 @@ void DrawScreen(void)
             {
                 MacUILib_printf("#");
             }
+            else if (j == tempFoodPos.x && i == tempFoodPos.y)
+            {
+                MacUILib_printf("%c", tempFoodPos.symbol);
+            }
             else
             {
                 MacUILib_printf(" ");
@@ -110,6 +120,8 @@ void DrawScreen(void)
     //                 myGM->getBoardSizeX(), 
     //                 myGM->getBoardSizeY(),
     //                 tempPos.x, tempPos.y, tempPos.symbol);
+    MacUILib_printf("Food Pos: <%d, %d,\n", tempFoodPos.x,tempFoodPos.y);
+
 }
 
 void LoopDelay(void)
