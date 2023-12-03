@@ -27,6 +27,7 @@ class GameMechs
 
         bool loseFlag; // Declare loseFlag
         int score;     // Declare score
+        objPos foodPos;
         
         int** GM; // heap data member
 
@@ -49,6 +50,11 @@ class GameMechs
         bool getLoseFlagStatus();
         void setLoseTrue();
         int getScore();
+
+        void setLoseFlag();
+
+        void generateFood(objPosArrayList *blockOff); 
+        void getFoodPos(objPos &returnPos);
 };
 
 #endif
