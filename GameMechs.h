@@ -29,7 +29,7 @@ class GameMechs
         int score;     // Declare score
         objPos foodPos;
         
-        int** GM; // heap data member
+        int** myGM; // heap data member
 
     public:
         GameMechs();

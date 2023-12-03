@@ -43,7 +43,7 @@ GameMechs::GameMechs(int boardX, int boardY)
 // do you need a destructor?
 GameMechs::~GameMechs()
 {
-   delete [] GM; // delete created heap data members
+   delete [] myGM; // delete created heap data members
 }
 
 
