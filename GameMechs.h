@@ -15,7 +15,7 @@ class GameMechs
     // Construct the remaining declaration from the project manual.
 
     // Only some sample members are included here
-
+    
     // You will include more data members and member functions to complete your design.
 
     private:
@@ -27,6 +27,8 @@ class GameMechs
 
         bool loseFlag; // Declare loseFlag
         int score;     // Declare score
+        
+        int** GM; // heap data member
 
     public:
         GameMechs();
@@ -44,8 +46,9 @@ class GameMechs
         int getBoardSizeY();
 
         void incrementScore();
-      
-
+        bool getLoseFlagStatus();
+        void setLoseTrue();
+        int getScore();
 };
 
 #endif
