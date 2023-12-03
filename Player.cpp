@@ -6,24 +6,40 @@ Player::Player(GameMechs* thisGMRef)
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
 
+    objPos tempPos; //initalizing temp
+    objPos playerPos;
+
     // more actions to be included
     playerPos.setObjPos(mainGameMechsRef->getBoardSizeX() / 2,
                         mainGameMechsRef->getBoardSizeY() / 2, 
                         '*'); // Sets default player pos
+
+    playerPosList = new objPosArrayList();
+    playerPosList->insertHead(tempPos); //for deallocating
+
+        // for debugging
+
+    playerPosList->insertHead(tempPos);
+    playerPosList->insertHead(tempPos);
+    playerPosList->insertHead(tempPos);
+    playerPosList->insertHead(tempPos);
 }
 
 
 Player::~Player()
 {
     // delete any heap members here
-
+    delete [] myPlayer; 
+    delete playerPosList;
     // Come back for Iteration 3
 }
 
-void Player::getPlayerPos(objPos &returnPos)
+objPosArrayList* Player::getPlayerPos()
 {
-    returnPos.setObjPos(playerPos.x, playerPos.y, playerPos.symbol);
-    // return the reference to the playerPos arrray list
+    // player is composed of objPosArrayList -- for snake body
+    // return the reference to playpos array list
+
+    return playerPosList;
 }
 
 void Player::updatePlayerDir()
