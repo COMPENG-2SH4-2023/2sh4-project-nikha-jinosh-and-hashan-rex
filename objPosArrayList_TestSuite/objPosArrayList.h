@@ -9,12 +9,13 @@ class objPosArrayList
 {
     private:
         objPos* aList;
-        int sizeList;
-        int sizeArray;
+        int listSize;
+        int arrayCapacity;
 
     public:
         objPosArrayList();
         ~objPosArrayList();
+        // objPosArrayList(const objPosArrayList &l);
 
         int getSize();
         void insertHead(objPos thisPos);
