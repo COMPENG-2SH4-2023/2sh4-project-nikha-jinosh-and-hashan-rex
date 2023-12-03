@@ -6,28 +6,36 @@ Player::Player(GameMechs* thisGMRef)
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
 
-    objPos tempPos; //initalizing temp
-    objPos playerPos;
-
     // more actions to be included
     objPos tempPos;
     tempPos.setObjPos(mainGameMechsRef->getBoardSizeX() / 2,
                         mainGameMechsRef->getBoardSizeY() / 2, 
                         '*'); // Sets default player pos
+
+    playerPosList = new objPosArrayList();
+    playerPosList->insertHead(tempPos);
+
+    // Testing Purposes
+    playerPosList->insertHead(tempPos);
+    playerPosList->insertHead(tempPos);
+    playerPosList->insertHead(tempPos);
+    playerPosList->insertHead(tempPos);
+
+
 }
 
 
 Player::~Player()
 {
     // delete any heap members here
-
+    delete playerPosList;
     // Come back for Iteration 3
 }
 
 objPosArrayList* Player::getPlayerPos()
 {
-    returnPos.setObjPos(playerPos.x, playerPos.y, playerPos.symbol);
     // return the reference to the playerPos arrray list
+    return playerPosList;
 }
 
 void Player::updatePlayerDir()
@@ -113,3 +121,4 @@ void Player::movePlayer()
     playerPosList->removeTail();
 
 }
+
