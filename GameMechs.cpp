@@ -62,11 +62,16 @@ bool GameMechs::getLoseFlagStatus()
 char GameMechs::getInput()
 {
     //checks if there is any input available and updates the input variable
-    if(MacUILib_hasChar())
+    if (MacUILib_hasChar() != 0)
     {
         input = MacUILib_getChar();
     }
 
+    // Not sure about this part
+    if (input == 27)
+    {
+        setExitTrue();
+    }
     return input;
 }
 
