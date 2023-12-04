@@ -62,7 +62,6 @@ void RunLogic(void)
     myPlayer->updatePlayerDir();
     myPlayer->movePlayer();
 
-    // myGM->clearInput; // so to not repeatedly process the input?? Does this go in player.h instead?
 }
 
 void DrawScreen(void)

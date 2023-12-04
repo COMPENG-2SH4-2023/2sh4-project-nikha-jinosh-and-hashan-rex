@@ -23,7 +23,6 @@ Player::~Player()
 {
     // delete any heap members here
     delete playerPosList;
-    // Come back for Iteration 3
 }
 
 objPosArrayList* Player::getPlayerPos()
@@ -34,9 +33,7 @@ objPosArrayList* Player::getPlayerPos()
 
 void Player::updatePlayerDir()
 {
-    // PPA3 input processing logic
 
-    // Where to get input. How do i check for input.
     char input = mainGameMechsRef->getInput();
 
     switch(input)
@@ -78,7 +75,6 @@ void Player::updatePlayerDir()
 
 void Player::movePlayer()
 {
-    // PPA3 Finite State Machine logic'
     objPos currentHead; // Holds the pos information of the current head
     playerPosList->getHeadElement(currentHead);
 
@@ -109,13 +105,11 @@ void Player::movePlayer()
             break;
     }
 
-    //New current ehads gets inserted to the head of the lost
     if (checkSelfCollision() == true)
     {
         mainGameMechsRef->setExitTrue();
     }
 
-    //New current ehads gets inserted to the head of the lost
 
 
     if (checkFoodConsumption() == true)
