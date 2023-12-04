@@ -15,12 +15,6 @@ Player::Player(GameMechs* thisGMRef)
     playerPosList = new objPosArrayList();
     playerPosList->insertHead(tempPos);
 
-    // Testing Purposes
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-
 
 }
 
@@ -116,9 +110,82 @@ void Player::movePlayer()
     }
 
     //New current ehads gets inserted to the head of the lost
-    playerPosList->insertHead(currentHead);
-    // Removes the tail
-    playerPosList->removeTail();
+    if (checkSelfCollision() == true)
+    {
+        mainGameMechsRef->setExitTrue();
+    }
 
+    //New current ehads gets inserted to the head of the lost
+
+
+    if (checkFoodConsumption() == true)
+    {
+        playerPosList->insertHead(currentHead);
+        mainGameMechsRef->incrementScore();
+        
+        objPosArrayList* tempPos = new objPosArrayList();
+        mainGameMechsRef->generateFood(tempPos);
+    }
+    else
+    {
+        playerPosList->insertHead(currentHead);
+        playerPosList->removeTail();
+    }
+
+
+}
+
+bool Player::checkFoodConsumption()
+{
+    objPos currentHead; // Holds the pos information of the current head
+    playerPosList->getHeadElement(currentHead);
+
+    objPos tempFoodPos;
+    mainGameMechsRef->getFoodPos(tempFoodPos);
+
+    if (currentHead.x == tempFoodPos.x && currentHead.y == tempFoodPos.y)
+    {
+        return true;
+    }
+    return false;
+
+}
+
+void Player::increasePlayerLength()
+{
+    // Not used
+    objPosArrayList* playerBody = getPlayerPos();
+    objPos tempBody;
+    // playerBody->insertHead(tempBody);
+
+    objPos currentHead; // Holds the pos information of the current 
+    
+
+    // playerPosList->getHeadElement(currentHead);
+
+    // playerPosList->insertHead(currentHead);
+
+
+
+
+}
+
+bool Player::checkSelfCollision()
+{
+    objPos currentHead; // Holds the pos information of the current head
+    playerPosList->getHeadElement(currentHead);
+    
+    objPosArrayList* playerBody = getPlayerPos();
+    objPos tempBody;
+
+    for (int i = 1; i < playerBody->getSize(); i++)
+    {
+        playerBody->getElement(tempBody, i);
+        if (currentHead.x == tempBody.x && currentHead.y == tempBody.y)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
